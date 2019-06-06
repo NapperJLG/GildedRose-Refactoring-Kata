@@ -19,6 +19,27 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toEqual(9);
   });
 
+  it('should lower the quality twice as fast when the sell by date passes', function(){
+    const gildedRose = new Shop([ new Item("foo", 0, 10) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(8);
+  });
+
+  it('can never make the quality less than zero', function(){
+    const gildedRose = new Shop([ new Item("foo", 0, 0) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].sellIn).toEqual(-1);
+    expect(items[0].quality).toEqual(0);
+  });
+
+
+
+  describe('special rules', function(){
+
+
+
+  });
+
 
 
 });
